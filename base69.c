@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "base69.h"
 #include <string.h>
 
 // Base69 alphabet
@@ -41,13 +42,3 @@ void encode_base69(int input, char *output) {
     strcat(output, tempBuffer); // Concatenate the reversed string to the output after the prefix
 }
 
-int main() {
-    int input = 100;
-    char output[24]; // Allocate enough space for the output including the prefix
-
-    encode_base69(input, output);
-
-    printf("Encoded: %s\n", output);
-
-    return 0;
-}
