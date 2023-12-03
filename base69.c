@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "base69.h"
 #include <string.h>
+#include "base69.h"
+
+
 
 // Base69 alphabet
 const char *base69_alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/=@*-!#";
@@ -41,4 +43,25 @@ void encode_base69(int input, char *output) {
 
     strcat(output, tempBuffer); // Concatenate the reversed string to the output after the prefix
 }
+
+// Base69 decoder
+int decode_base69(char *input) {
+    int index = 0;
+    int output = 0;
+    // Skip the prefix "69*|"
+    int prefixLength = strlen("69*|");
+    input += prefixLength;
+    //loop through the input string
+    while (*input) {
+        //find the index of the current character in the alphabet
+        char *position = strchr(base69_alphabet, *input);
+        int digit = position - base69_alphabet;
+        //convert the digit to base 10
+        output = output * 70 + digit;
+        input++;
+    }
+
+    return output;
+}
+
 
